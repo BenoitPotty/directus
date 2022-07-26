@@ -87,6 +87,7 @@
 		"@directus/schema": "workspace:*",
 		"@directus/shared": "workspace:*",
 		"@directus/specs": "workspace:*",
+		"@rokka/directus-storage-adapter": "workspace:*",
 		"@godaddy/terminus": "^4.10.2",
 		"@rollup/plugin-alias": "^3.1.9",
 		"@rollup/plugin-virtual": "^2.1.0",

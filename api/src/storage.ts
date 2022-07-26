@@ -6,6 +6,7 @@ import env from './env';
 import { getConfigFromEnv } from './utils/get-config-from-env';
 import { toArray } from '@directus/shared/utils';
 import { validateEnv } from './utils/validate-env';
+import logger from './logger';
 
 validateEnv(['STORAGE_LOCATIONS']);
 
@@ -47,8 +48,8 @@ function registerDrivers(storage: StorageManager) {
 		if (value && usedDrivers.includes(value) === false) usedDrivers.push(value);
 	}
 
-	usedDrivers.forEach((driver) => {
-		const storageDriver = getStorageDriver(driver);
+	usedDrivers.forEach(async (driver) => {
+		const storageDriver = await getStorageDriver(driver);
 
 		if (storageDriver) {
 			storage.registerDriver<Storage>(driver, storageDriver);
@@ -56,7 +57,7 @@ function registerDrivers(storage: StorageManager) {
 	});
 }
 
-function getStorageDriver(driver: string) {
+async function getStorageDriver(driver: string) {
 	switch (driver) {
 		case 'local':
 			return LocalFileSystemStorage;
@@ -66,5 +67,26 @@ function getStorageDriver(driver: string) {
 			return GoogleCloudStorage;
 		case 'azure':
 			return AzureBlobWebServicesStorage;
+		default:
+			return await getStorageDriverDynamicallyOrDefault(driver);
+	}
+}
+
+async function getStorageDriverDynamicallyOrDefault(driver: string) {
+	const defaultDriver = () => {
+		return LocalFileSystemStorage;
+	};
+	try {
+		logger.debug(`Loading driver from ${driver}`);
+		const module = await import(driver);
+		if (!module.default) {
+			logger.warn(`The driver ${driver} has no default export.`);
+			return defaultDriver();
+		}
+		logger.debug(`Driver ${driver} loaded`);
+		return module.default;
+	} catch (error) {
+		logger.warn(`The driver ${driver} has not been found.`);
+		return defaultDriver();
 	}
 }

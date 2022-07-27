@@ -688,11 +688,13 @@ importers:
       jest: 27.3.1
       normalize-path: ^3.0.0
       npm-run-all: 4.1.5
+      rokka: ^3.7.0
       ts-jest: 27.0.7
       typescript: 4.5.2
     dependencies:
       '@directus/drive': link:../drive
       normalize-path: 3.0.0
+      rokka: 3.7.0
     devDependencies:
       '@lukeed/uuid': 2.0.0
       '@types/fs-extra': 9.0.13
@@ -5677,6 +5679,14 @@ packages:
       cross-spawn: 7.0.3
     dev: true
 
+  /cross-fetch/3.1.5:
+    resolution: {integrity: sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==}
+    dependencies:
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /cross-spawn/6.0.5:
     resolution: {integrity: sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==}
     engines: {node: '>=4.8'}
@@ -9496,6 +9506,10 @@ packages:
       jwa: 2.0.0
       safe-buffer: 5.2.1
 
+  /jwt-decode/3.1.2:
+    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
+    dev: false
+
   /kdbush/3.0.0:
     resolution: {integrity: sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew==}
     dev: true
@@ -12117,6 +12131,19 @@ packages:
     dependencies:
       glob: 7.2.3
 
+  /rokka/3.7.0:
+    resolution: {integrity: sha512-d6LbrnGHg9+Bcr4zQyMWvt61hmOG4ejGqHjF/3Va10W0bRsPEgyb+I11VVAtOIJQPovkvWIIGepXoFfFgmiUFA==}
+    engines: {node: '>=10'}
+    dependencies:
+      cross-fetch: 3.1.5
+      form-data: 4.0.0
+      jwt-decode: 3.1.2
+      query-string: 7.1.1
+      simple-js-sha2-256: 1.0.7
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
   /rollup-plugin-styles/4.0.0_rollup@2.77.0:
     resolution: {integrity: sha512-A2K2sao84OsTmDxXG83JTCdXWrmgvQkkI38XDat46rdtpGMRm9tSYqeCdlwwGDJF4kKIafhV1mUidqu8MxUGig==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -12419,6 +12446,10 @@ packages:
     hasBin: true
     requiresBuild: true
     dev: true
+
+  /simple-js-sha2-256/1.0.7:
+    resolution: {integrity: sha512-Z5dUk/kYx3NlkrNTe2tE+a01eVagNmbZ2Sc2wfqCdYjVe6LSs/xZ1UlI0eLKSfMVCjNWz7J+nKwX/7S6JX9aNw==}
+    dev: false
 
   /simple-lru-cache/0.0.2:
     resolution: {integrity: sha512-uEv/AFO0ADI7d99OHDmh1QfYzQk/izT1vCmu/riQfh7qjBVUUgRT87E5s5h7CxWCA/+YoZerykpEthzVrW3LIw==}

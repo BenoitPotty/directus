@@ -22,8 +22,7 @@
 		"azure"
 	],
 	"author": "Benoit Potty <benoit@potty.be>",
-	"contributors": [
-	],
+	"contributors": [],
 	"files": [
 		"dist"
 	],
@@ -38,7 +37,8 @@
 	},
 	"dependencies": {
 		"@directus/drive": "workspace:*",
-		"normalize-path": "^3.0.0"
+		"normalize-path": "^3.0.0",
+		"rokka": "^3.7.0"
 	},
 	"devDependencies": {
 		"@lukeed/uuid": "2.0.0",

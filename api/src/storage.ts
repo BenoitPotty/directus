@@ -73,20 +73,18 @@ async function getStorageDriver(driver: string) {
 }
 
 async function getStorageDriverDynamicallyOrDefault(driver: string) {
-	const defaultDriver = () => {
-		return LocalFileSystemStorage;
-	};
+	const defaultDriver = LocalFileSystemStorage;
 	try {
 		logger.debug(`Loading driver from ${driver}`);
 		const module = await import(driver);
 		if (!module.default) {
 			logger.warn(`The driver ${driver} has no default export.`);
-			return defaultDriver();
+			return defaultDriver;
 		}
 		logger.debug(`Driver ${driver} loaded`);
 		return module.default;
 	} catch (error) {
 		logger.warn(`The driver ${driver} has not been found.`);
-		return defaultDriver();
+		return defaultDriver;
 	}
 }
